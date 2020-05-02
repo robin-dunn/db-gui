@@ -1,0 +1,36 @@
+﻿<Window x:Class="DbGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DbGui"
+        mc:Ignorable="d"
+        Title="DB GUI" Height="450" Width="800">
+	<Grid Margin="10">
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition Height="20"></RowDefinition>
+			<RowDefinition Height="200"></RowDefinition>
+			<RowDefinition Height="20"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Height="20">
+			<local:TextboxWithPlaceholder PlaceholderText="Host" HorizontalAlignment="Left" Width="120" />
+			<local:TextboxWithPlaceholder PlaceholderText="Port" HorizontalAlignment="Left" Width="120" />
+			<local:TextboxWithPlaceholder PlaceholderText="Database" HorizontalAlignment="Left" Width="120" />
+			<local:TextboxWithPlaceholder PlaceholderText="Password" HorizontalAlignment="Left" Width="120" />
+		</StackPanel>
+
+		<Label Grid.Row="1" VerticalAlignment="Top" Padding="0">Query</Label>
+		<TextBox Grid.Row="2" Width="auto"></TextBox>
+
+		<Label Grid.Row="3" VerticalAlignment="Top" Padding="0">Results</Label>
+		<TextBox Grid.Row="4" IsReadOnly="True"></TextBox>
+	</Grid>
+</Window>
