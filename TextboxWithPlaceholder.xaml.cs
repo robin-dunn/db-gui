@@ -27,20 +27,48 @@ namespace DbGui
 
 		public string Text
 		{
-			get { return (string)GetValue(TextProperty); }
+			get { return IsPassword ? ThePasswordBox.Password : (string)GetValue(TextProperty); }
 			set { SetValue(TextProperty, value); }
 		}
 
 		public static readonly DependencyProperty TextProperty
 			= DependencyProperty.Register("Text", typeof(string), typeof(TextboxWithPlaceholder));
 
+		public bool IsPassword
+		{
+			get { return (bool)GetValue(IsPasswordProperty); }
+			set { SetValue(IsPasswordProperty, value); }
+		}
+
+		public static readonly DependencyProperty IsPasswordProperty
+			= DependencyProperty.Register("IsPassword", typeof(bool), typeof(TextboxWithPlaceholder));
+
+		public bool ShowTextbox => !IsPassword;
+
 		private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			TextBox textBox = sender as TextBox;
 
-			if (textBox != null)
+			if (textBox != null && textBox.Visibility == Visibility.Visible)
 			{
 				if (string.IsNullOrWhiteSpace(textBox.Text))
+				{
+					Placeholder.Visibility = Visibility.Visible;
+				}
+				else
+				{
+					Placeholder.Visibility = Visibility.Hidden;
+				}
+			}
+		}
+
+		private void ThePasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+		{
+			PasswordBox passwordBox = sender as PasswordBox;
+
+			if (passwordBox != null)
+			{
+				if (string.IsNullOrWhiteSpace(passwordBox.Password))
 				{
 					Placeholder.Visibility = Visibility.Visible;
 				}

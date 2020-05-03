@@ -25,7 +25,7 @@
 			<local:TextboxWithPlaceholder x:Name="port" PlaceholderText="Port" HorizontalAlignment="Left" Width="120" Text="5432"/>
 			<local:TextboxWithPlaceholder x:Name="database" PlaceholderText="Database" HorizontalAlignment="Left" Width="120" Text="test"/>
 			<local:TextboxWithPlaceholder x:Name="username" PlaceholderText="Username" HorizontalAlignment="Left" Width="120" Text="postgres"/>
-			<local:TextboxWithPlaceholder x:Name="password" PlaceholderText="Password" HorizontalAlignment="Left" Width="120" />
+			<local:TextboxWithPlaceholder x:Name="password" IsPassword="True" PlaceholderText="Password" HorizontalAlignment="Left" Width="120" />
 		</StackPanel>
 
 		<DockPanel Grid.Row="1" Margin="0,0,0,5">
