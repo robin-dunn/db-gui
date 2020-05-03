@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Npgsql;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DbGui
 {
@@ -23,6 +11,21 @@ namespace DbGui
 		public MainWindow()
 		{
 			InitializeComponent();
+		}
+
+		private async void Button_Click(object sender, RoutedEventArgs e)
+		{
+			var connString = $"Host={host.Text};Username={username.Text};Password={password.Text};Database={database.Text}";
+
+			await using var conn = new NpgsqlConnection(connString);
+			await conn.OpenAsync();
+
+			await using (var cmd = new NpgsqlCommand(query.Text, conn))
+			{
+				await cmd.ExecuteNonQueryAsync();
+			}
+
+			MessageBox.Show("Complete");
 		}
 	}
 }

@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DbGui
 {
@@ -29,10 +22,17 @@ namespace DbGui
 			set { SetValue(PlaceholderTextProperty, value); }
 		}
 
-		// Using a DependencyProperty as the backing store for Property1.  
-		// This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty PlaceholderTextProperty
 			= DependencyProperty.Register("PlaceholderText", typeof(string), typeof(TextboxWithPlaceholder));
+
+		public string Text
+		{
+			get { return (string)GetValue(TextProperty); }
+			set { SetValue(TextProperty, value); }
+		}
+
+		public static readonly DependencyProperty TextProperty
+			= DependencyProperty.Register("Text", typeof(string), typeof(TextboxWithPlaceholder));
 
 		private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{

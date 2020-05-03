@@ -21,16 +21,20 @@
 		</Grid.RowDefinitions>
 
 		<StackPanel Grid.Row="0" Orientation="Horizontal" Height="20">
-			<local:TextboxWithPlaceholder PlaceholderText="Host" HorizontalAlignment="Left" Width="120" />
-			<local:TextboxWithPlaceholder PlaceholderText="Port" HorizontalAlignment="Left" Width="120" />
-			<local:TextboxWithPlaceholder PlaceholderText="Database" HorizontalAlignment="Left" Width="120" />
-			<local:TextboxWithPlaceholder PlaceholderText="Password" HorizontalAlignment="Left" Width="120" />
+			<local:TextboxWithPlaceholder x:Name="host" PlaceholderText="Host" HorizontalAlignment="Left" Width="120" Text="localhost"/>
+			<local:TextboxWithPlaceholder x:Name="port" PlaceholderText="Port" HorizontalAlignment="Left" Width="120" Text="5432"/>
+			<local:TextboxWithPlaceholder x:Name="database" PlaceholderText="Database" HorizontalAlignment="Left" Width="120" Text="test"/>
+			<local:TextboxWithPlaceholder x:Name="username" PlaceholderText="Username" HorizontalAlignment="Left" Width="120" Text="postgres"/>
+			<local:TextboxWithPlaceholder x:Name="password" PlaceholderText="Password" HorizontalAlignment="Left" Width="120" />
 		</StackPanel>
 
-		<Label Grid.Row="1" VerticalAlignment="Top" Padding="0">Query</Label>
-		<TextBox Grid.Row="2" Width="auto"></TextBox>
+		<DockPanel Grid.Row="1" Margin="0,0,0,5">
+			<Label VerticalAlignment="Top" Padding="0">Query</Label>
+			<Button Click="Button_Click" HorizontalAlignment="Right" Padding="0">Run</Button>
+		</DockPanel>
+		<TextBox Grid.Row="2" x:Name="query" Width="auto">INSERT INTO city (name) VALUES ('london')</TextBox>
 
 		<Label Grid.Row="3" VerticalAlignment="Top" Padding="0">Results</Label>
-		<TextBox Grid.Row="4" IsReadOnly="True"></TextBox>
+		<TextBox Grid.Row="4" x:Name="results" IsReadOnly="True"></TextBox>
 	</Grid>
 </Window>

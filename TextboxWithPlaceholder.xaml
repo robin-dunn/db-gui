@@ -18,6 +18,6 @@
 		</Grid.RowDefinitions>
 
 		<Label x:Name="Placeholder" Grid.Row="0" Content="{Binding PlaceholderText, ElementName=ThisUserControl}" VerticalContentAlignment="Top" Padding="2,2,0,0" />
-		<TextBox x:Name="TheTextbox" Grid.Row="0" Background="Transparent" TextChanged="TextBox_TextChanged"></TextBox>
+		<TextBox x:Name="TheTextbox" Grid.Row="0" Background="Transparent" TextChanged="TextBox_TextChanged" Text="{Binding Text, ElementName=ThisUserControl}"></TextBox>
     </Grid>
 </UserControl>
