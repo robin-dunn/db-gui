@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using System;
 using System.Windows;
 
 namespace DbGui
@@ -20,12 +21,37 @@ namespace DbGui
 			await using var conn = new NpgsqlConnection(connString);
 			await conn.OpenAsync();
 
+			uint countResults = 0;
+			string queryResultString = string.Empty;
+
 			await using (var cmd = new NpgsqlCommand(query.Text, conn))
 			{
-				await cmd.ExecuteNonQueryAsync();
+				var dataReader = await cmd.ExecuteReaderAsync();
+
+				while (await dataReader.ReadAsync())
+				{
+					if (dataReader.FieldCount > 0)
+					{
+						countResults++;
+
+						for (int i = 0; i < dataReader.FieldCount; i++)
+						{
+							queryResultString += dataReader[i].ToString();
+
+							if (i == dataReader.FieldCount - 2)
+							{
+								queryResultString += ", ";
+							}
+						}
+
+						queryResultString += Environment.NewLine;
+					}
+				}
 			}
 
-			MessageBox.Show("Complete");
+			labelQueryStatus.Content = "Query completed.";
+			labelCountResults.Content = countResults.ToString() + " results.";
+			results.Text = queryResultString;
 		}
 	}
 }
